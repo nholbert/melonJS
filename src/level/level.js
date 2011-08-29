@@ -57,7 +57,12 @@
 			L_SLOPE : "lslope",
 			R_SLOPE : "rslope",
 			LADDER : "ladder",
-			BREAKABLE : "breakable"
+			BREAKABLE : "breakable",
+			//NEWADD
+			BOUNCE : "bounce",
+			SLICK : "slick",
+			HARD : "hard"
+			//ENDADD
 		};
 
 		// tile properties
@@ -92,7 +97,12 @@
 			isLeftSlope : false,
 			isRightSlope : false,
 			isLadder : false,
-			isBreakable : false
+			isBreakable : false,
+			//NEWADD
+			isBounce : false,
+			isSlick : false,
+			isHard : false
+			//ENDADD
 		};
 	};
 
