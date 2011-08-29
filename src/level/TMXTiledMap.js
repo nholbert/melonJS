@@ -376,7 +376,8 @@
 			// ensure the collidable flag is correct
 			tileProp.isCollidable = tileProp.isSolid || tileProp.isPlatform
 					|| tileProp.isSlope || tileProp.isLadder
-					|| tileProp.isBreakable;
+					|| tileProp.isBreakable || tileProp.isBounce
+					|| tileProp.isSlick || tileProp.isHard;
 
 			//console.log(tileID);
 			// check if the array is correct udptaded
