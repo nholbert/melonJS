@@ -362,6 +362,16 @@
 			tileProp.isLadder = tileProp.type ? tileProp.type.toLowerCase() === this.type.LADDER
 					: false;
 			tileProp.isSlope = tileProp.isLeftSlope || tileProp.isRightSlope;
+			
+			//NEWADD//
+			tileProp.isBounce = tileProp.type?tileProp.type.toLowerCase() === this.type.BOUNCE
+					: false;
+			tileProp.isSlick = tileProp.type?tileProp.type.toLowerCase() === this.type.SLICK
+					: false;
+			tileProp.isHard	= tileProp.type?tileProp.type.toLowerCase() === this.type.HARD
+					: false;
+			//ENDADD
+			
 
 			// ensure the collidable flag is correct
 			tileProp.isCollidable = tileProp.isSolid || tileProp.isPlatform
