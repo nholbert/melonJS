@@ -839,6 +839,12 @@
 					this.slopeY = 0;
 					this.onslope = false;
 					this.onladder = false;
+					
+					//NEWADD//
+					this.onBounce = false;
+					this.onSlick = false;
+					this.onHard = false;
+					//ENDADD
 
 					// to enable collision detection
 					this.collidable = settings.collidable || false;
@@ -1044,6 +1050,14 @@
 
 					// apply gravity on y axis
 					if (this.jumping) {
+						//NEWADD//
+						if (this.onBounce) {
+							this.jumpspeed = (this.jumpspeed * 1.5) - this.gravity ;
+						} else {
+							this.jumpspeed	-= this.gravity ;
+						}
+						//ENDADD ("else" is original -- no if statement)//
+						
 						this.jumpspeed -= this.gravity;
 						if ((this.jumpspeed < 0))// || !me.input.keyStatus('jump')) // jumping)
 						{
@@ -1071,6 +1085,11 @@
 					this.onladder = collision.xprop.isLadder;
 					this.onslope = collision.yprop.isSlope
 							|| collision.xprop.isSlope;
+					//NEWADD//
+					this.onBounce = collision.yprop.isBounce;
+					this.onSlick = collision.yprop.isSlick;
+					this.onHard = collision.yprop.isHard;
+					//ENDADD//
 					//console.log(this.onslope);
 
 					// y collision
@@ -1121,7 +1140,18 @@
 											: 0;
 									this.falling = false;
 								}
+							} else if (collision.yprop.isBounce) { //NEWADD
+								// round pos.y
+								this.pos.y = ~~this.pos.y;
+								// adjust vel to tile pos
+								this.vel.y = (this.falling)?collision.ytile.pos.y - this.pos.y - this.height:0;
+								this.falling  = false;
+								this.jumping = false;
+								if (this.vel.y > 1) {
+									this.forceJump();
+								}
 							}
+							//ENDADD
 						}
 						// going up
 						// collision with ceiling
