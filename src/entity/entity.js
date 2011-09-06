@@ -1101,7 +1101,7 @@
 							// update the onslope flag
 							//this.onslope = collision.yprop.isSlope
 
-							if (collision.yprop.isSolid
+							if (collision.yprop.isSolid || collision.yprop.isSlick || collision.yprop.isHard
 									|| (collision.yprop.isPlatform && (~~this.pos.y
 											+ this.height <= collision.ytile.pos.y))) {
 								// round pos.y
@@ -1144,12 +1144,14 @@
 								// round pos.y
 								this.pos.y = ~~this.pos.y;
 								// adjust vel to tile pos
-								this.vel.y = (this.falling)?collision.ytile.pos.y - this.pos.y - this.height:0;
-								this.falling  = false;
-								this.jumping = false;
+								this.vel.y = (this.falling) ? collision.ytile.pos.y
+										- this.pos.y - this.height
+										: 0;								this.falling  = false;
+								//this.jumping = false;
 								if (this.vel.y > 1) {
-									this.forceJump();
+									this.doJump();
 								}
+								this.falling = false;
 							}
 							//ENDADD
 						}

@@ -31,8 +31,11 @@
 				
 			------ */
 
-		init : function(x, y, image, spritewidth) {
-			this.parent(this, x, y, image, spritewidth);
+		init : function(x, y, settings) {
+			this.parent(x, y,
+				(typeof settings.image == "string") ? me.loader
+					.getImage(settings.image) : settings.image,
+					settings.spritewidth);
 		},
 
 		/* -----
